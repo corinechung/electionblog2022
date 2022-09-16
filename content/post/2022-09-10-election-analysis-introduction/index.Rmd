@@ -15,6 +15,11 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(sf)
 library(plotly)
+# load usmap
+# install.packages('plot_usmap')
+library(usmap)
+h <- read_csv("house party vote share by district 1948-2020.csv")
+
 ```
 
 *This blog is part of a series related to Gov 1347: Election Analytics, a course at [Harvard University](https://www.harvard.edu/) taught by Professor [Ryan D. Enos](http://ryandenos.com/)*.
@@ -51,7 +56,6 @@ cd114_mi <- cd114 %>%
 
 # add data to plot - 2014 GOP party seat share
 # reload election data - h from previous exercise
-h <- read_csv("house party vote share by district 1948-2020.csv")
 ```
 
 
@@ -73,10 +77,6 @@ cd114_mi <- cd114 %>%
             mutate(DISTRICT = as.character(DISTRICT))%>%
             select(DISTRICT)
 
-# add data to plot - 2014 GOP party seat share
-# reload election data - h from previous exercise
-h <- read_csv("house party vote share by district 1948-2020.csv")
-
 ## make map of GOP vote share by state (national) - 2014
 # use h dataset from earlier
 # house_party_vote_share_by_district_1948_2020 <- 
@@ -95,10 +95,6 @@ R_2010 <- h %>%
            D_votemargin_st = (sum(DemVotes))/
                             sum(RepVotes + DemVotes)) %>%
   rename(state = State)
-
-# load usmap
-# install.packages('plot_usmap')
-library(usmap)
 
 states_map <- usmap::us_map()
 unique(states_map$abbr)
