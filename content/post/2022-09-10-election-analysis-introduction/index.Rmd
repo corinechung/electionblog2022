@@ -3,7 +3,7 @@ title: '2022 Midterm Forecast Introduction'
 author: Corine Chung
 date: '2022-09-10'
 slug: []
-categories: []_
+categories: []
 tags: []
 summary: "From now until November 8, I will be updating this weekly blog series with my **2022 US midterm election prediction model**. For this first blog, I'll be exploring past election results to find any trends in the data. More specifically, I'll be diving into the state of **Michigan**."
 ---
@@ -31,7 +31,7 @@ From now until November 8, I will be updating this weekly blog series with my **
 
 Before focusing specifically on Michigan, I first examine the GOP two-party vote share margin for the 2010 midterm election.
 
-```{r, include=TRUE, message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE, fig.align="center"}
+```{r}
 ## make map of vote share by state and CD
 
 # start with 114th congress - 2014 election
@@ -55,7 +55,7 @@ h <- read_csv("house party vote share by district 1948-2020.csv")
 ```
 
 
-```{r, include=TRUE, message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE, fig.align="center"}
+```{r}
 ## make map of vote share by state and CD
 
 # start with 114th congress - 2014 election
@@ -94,7 +94,7 @@ R_2010 <- h %>%
                             sum(RepVotes + DemVotes),
            D_votemargin_st = (sum(DemVotes))/
                             sum(RepVotes + DemVotes)) %>%
-    rename(state = State)
+  rename(state = State)
 
 # load usmap
 # install.packages('plot_usmap')
@@ -116,7 +116,7 @@ Next, I examine Michigan specifically, which has been a critical swing state in 
 
 <br>
 
-```{r, include=TRUE, message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE, fig.align="center"}
+```{r}
 R_mi_2014 <- h %>%
     filter(raceYear == 2014, State == "Michigan") %>%
     select(raceYear, State, district_num, RepVotesMajorPercent, DemVotesMajorPercent) %>%
