@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Fundamentals I: Economics Forces &middot; My New Hugo Site</title>
+
+		
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" href="/favicon.ico"/>
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+
+		<script src="/js/darkmode.js"></script>
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					
+						<h2 class="nav-title">My New Hugo Site</h2>
+					
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        <div id="darkModeToggle" onclick="toggleDarkMode()">
+  &#9680; 
+</div>
+
+        
+
+<main>
+	
+
+
+        <div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        Corine Chung
+        <br>
+        <span>on&nbsp;</span><time datetime="2022-09-16 00:00:00 &#43;0000 UTC">September 16, 2022</time>
+</div>
+
+		<h1 class="post-title">Fundamentals I: Economics Forces</h1>
+<div class="post-line"></div>
+
+		
+
+		
+
+
+<p><em>This blog is part of a series related to Gov 1347: Election Analytics, a course at <a href="https://www.harvard.edu/">Harvard University</a> taught by Professor <a href="http://ryandenos.com/">Ryan D. Enos</a></em>.</p>
+<p><br></p>
+<p>From now until November 8, I will be updating this weekly blog series with my <strong>2022 US midterm election prediction model</strong>. For this second blog, I explore national economic models as predictors for the incumbent party’s popular vote percentage in a given election year.</p>
+<p><br></p>
+<div id="real-disposable-income-quarterly" class="section level1">
+<h1>Real Disposable Income Quarterly</h1>
+<p><br></p>
+<p>First, I examine the percent change in disposable income and how that correlates with the percentage of the votes that the incumbent party receives for each election year from 1964 to 2020.</p>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-1-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>The correlation is found to be:</p>
+<pre class="r"><code>summary(lm_rdi)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = H_incumbent_party_majorvote_pct ~ DSPIC_change_pct, 
+##     data = data2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.3857 -2.1887  0.4447  2.2152  5.8840 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       52.5781     0.7597  69.210   &lt;2e-16 ***
+## DSPIC_change_pct  -0.7964     0.6085  -1.309    0.201    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.4 on 29 degrees of freedom
+## Multiple R-squared:  0.05577,    Adjusted R-squared:  0.02321 
+## F-statistic: 1.713 on 1 and 29 DF,  p-value: 0.2009</code></pre>
+<pre><code>## [1] 0.05576812</code></pre>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre><code>## [1] 1.179932</code></pre>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>summary(lm_unr)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = H_incumbent_party_majorvote_pct ~ UNRATE, data = data3)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.9681 -1.4497  0.6175  2.3157  6.6103 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  47.4800     1.9400  24.475   &lt;2e-16 ***
+## UNRATE        0.7466     0.3254   2.294   0.0279 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.18 on 35 degrees of freedom
+## Multiple R-squared:  0.1307, Adjusted R-squared:  0.1059 
+## F-statistic: 5.263 on 1 and 35 DF,  p-value: 0.0279</code></pre>
+<pre><code>## [1] 0.1307167</code></pre>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<pre><code>## [1] 1.010582</code></pre>
+</div>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/post/2022-09-10-election-analysis-introduction/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2022-09-19 13:33:22.356116 -0400 EDT m=&#43;0.268483934">2022</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
