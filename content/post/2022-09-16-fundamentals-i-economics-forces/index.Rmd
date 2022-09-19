@@ -79,17 +79,20 @@ data2 %>%
     geom_text() +
     geom_hline(yintercept=50, lty=2) +
     geom_vline(xintercept=0.01, lty=2) + # median
-    xlab("Q8-Q7 GDP growth") +
+    xlab("Q8-Q7 percent change in disposable income") +
     ylab("Incumbent party PV") +
     theme_bw() +
     theme(
       axis.text = element_text(size = 10)
     )
 ```
+We can see that for most of the time, a positive percent change in disposable income results in the incumbent party receiving more votes.
+
+<br>
 
 The correlation is found to be:
 
-```{r, eval=FALSE}
+```{r, echo = FALSE, eval=FALSE}
 cor(data2$DSPIC_change_pct, data2$H_incumbent_party_majorvote_pct)
 ```
 
@@ -101,13 +104,15 @@ lm_rdi <- lm(H_incumbent_party_majorvote_pct ~ DSPIC_change_pct,
 
 ```
 
-```{r, echo=TRUE, eval = TRUE}
+```{r, echo=FALSE, eval = TRUE}
 summary(lm_rdi)
 ```
 
 ```{r}
 summary(lm_rdi)$r.squared
 ```
+
+The following graph shows the incumbent party vote percentage when compared to the predicted incumbent party vote percentage for each year:
 
 ```{r, fig.width=6, fig.height=4, out.width = '70%', fig.align='center'}
 # GDP
@@ -131,6 +136,8 @@ outsamp_errors <- sapply(1:1000, function(i){
 })
 ```
 
+Below is the mean out-of-sample residuals, which validates our model:
+
 ```{r, echo=FALSE, message=FALSE, fig.width=6, fig.height=3, out.width = '70%', fig.align='center'}
 hist(outsamp_errors,
      xlab = "",
@@ -140,6 +147,8 @@ hist(outsamp_errors,
 mean(abs(outsamp_errors))
 ```
 
+Next, I examine the percent change in unemployment rate and how that correlates with the percentage of the votes that the incumbent party receives for each election year from 1964 to 2020.
+
 ```{r, echo=FALSE, eval=TRUE, fig.width=5, fig.height=3, out.width = '60%', fig.align='center'}
 data3 %>%
   ggplot(aes(x=UNRATE, y=H_incumbent_party_majorvote_pct,
@@ -147,13 +156,18 @@ data3 %>%
     geom_text() +
     geom_hline(yintercept=50, lty=2) +
     geom_vline(xintercept=0.01, lty=2) + # median
-    xlab("Q8-Q7 GDP growth") +
+    xlab("Q8-Q7 unemployment rate") +
     ylab("Incumbent party PV") +
     theme_bw() +
     theme(
       axis.text = element_text(size = 10)
     )
 ```
+There does not seem to be a strong correlation between unemployment rate and the percentage of votes the incumbent party receives. This model seems to go against intuition, since one would suppose that more unemployment would cause constituents to be unhappy with the current government.
+
+<br>
+
+The correlation is found to be:
 
 ```{r, eval=FALSE}
 cor(data3$UNRATE, data3$H_incumbent_party_majorvote_pct)
@@ -164,7 +178,7 @@ lm_unr <- lm(H_incumbent_party_majorvote_pct ~ UNRATE,
               data = data3)
 ```
 
-```{r, echo=TRUE, eval = TRUE}
+```{r, echo=FALSE, eval = TRUE}
 summary(lm_unr)
 ```
 
@@ -193,6 +207,8 @@ outsamp_errors <- sapply(1:1000, function(i){
   mean(outsamp_pred - outsamp_true)
 })
 ```
+
+Below is the mean out-of-sample residuals:
 
 ```{r, echo=FALSE, message=FALSE, fig.width=6, fig.height=3, out.width = '70%', fig.align='center'}
 hist(outsamp_errors,

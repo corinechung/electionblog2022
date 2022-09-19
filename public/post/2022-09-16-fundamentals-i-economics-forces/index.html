@@ -72,9 +72,10 @@
 <h1>Real Disposable Income Quarterly</h1>
 <p><br></p>
 <p>First, I examine the percent change in disposable income and how that correlates with the percentage of the votes that the incumbent party receives for each election year from 1964 to 2020.</p>
-<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-1-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-1-1.png" width="60%" style="display: block; margin: auto;" />
+We can see that for most of the time, a positive percent change in disposable income results in the incumbent party receiving more votes.</p>
+<p><br></p>
 <p>The correlation is found to be:</p>
-<pre class="r"><code>summary(lm_rdi)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = H_incumbent_party_majorvote_pct ~ DSPIC_change_pct, 
@@ -95,11 +96,16 @@
 ## Multiple R-squared:  0.05577,    Adjusted R-squared:  0.02321 
 ## F-statistic: 1.713 on 1 and 29 DF,  p-value: 0.2009</code></pre>
 <pre><code>## [1] 0.05576812</code></pre>
+<p>The following graph shows the incumbent party vote percentage when compared to the predicted incumbent party vote percentage for each year:</p>
 <p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Below is the mean out-of-sample residuals, which validates our model:</p>
 <p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<pre><code>## [1] 1.150346</code></pre>
-<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>summary(lm_unr)</code></pre>
+<pre><code>## [1] 1.0963</code></pre>
+<p>Next, I examine the percent change in unemployment rate and how that correlates with the percentage of the votes that the incumbent party receives for each election year from 1964 to 2020.</p>
+<p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" />
+There does not seem to be a strong correlation between unemployment rate and the percentage of votes the incumbent party receives. This model seems to go against intuition, since one would suppose that more unemployment would cause constituents to be unhappy with the current government.</p>
+<p><br></p>
+<p>The correlation is found to be:</p>
 <pre><code>## 
 ## Call:
 ## lm(formula = H_incumbent_party_majorvote_pct ~ UNRATE, data = data3)
@@ -120,8 +126,9 @@
 ## F-statistic: 5.263 on 1 and 35 DF,  p-value: 0.0279</code></pre>
 <pre><code>## [1] 0.1307167</code></pre>
 <p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Below is the mean out-of-sample residuals:</p>
 <p><img src="http://example.org/post/2022-09-16-fundamentals-i-economics-forces/index_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<pre><code>## [1] 1.011826</code></pre>
+<pre><code>## [1] 1.069193</code></pre>
 </div>
 
 
@@ -139,7 +146,7 @@
         		<footer>
 			
 			<span>
-			&copy; <time datetime="2022-09-19 13:49:05.465303 -0400 EDT m=&#43;0.260028069">2022</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2022-09-19 13:53:21.327301 -0400 EDT m=&#43;0.338470987">2022</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 
