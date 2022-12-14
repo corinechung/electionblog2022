@@ -23,7 +23,7 @@ FiveThirtyEight utilizes three different versions of models: Lite, Classic, and 
       <pubDate>Fri, 23 Sep 2022 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/post/2022-09-23-polls/</guid>
-      <description>Blog Extension 1: Comparing Midterm Forecasts ** FiveThirtyEight Model
+      <description>Comparing Midterm Forecasts ** FiveThirtyEight Model
 FiveThirtyEight utilizes three different versions of models: Lite, Classic, and Deluxe. These versions, however, can be considered to be layers that build on top of one another. For instance, the Lite version incorporates district-by-district polling (adjusted for house effects and other factors) and CANTOR, which is a system that infers results for districts with little or no polling from comparable districts that do have polling data available.</description>
     </item>
     

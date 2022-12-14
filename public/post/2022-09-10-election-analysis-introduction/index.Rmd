@@ -28,8 +28,21 @@ require(tidyverse)
 require(ggplot2)
 require(sf)
 
+get_congress_map <- function(cong=114) {
+  tmp_file <- tempfile()
+  tmp_dir  <- tempdir()
+  zp <- sprintf("https://cdmaps.polisci.ucla.edu/shp/districts114.zip",cong)
+  download.file(zp, tmp_file)
+  unzip(zipfile = tmp_file, exdir = tmp_dir)
+  fpath <- paste(tmp_dir, sprintf("districtShapes/districts114.shp",cong), sep = "/")
+  st_read(fpath)
+}
+
 # load 114th congress
-cd114 <- st_read("districtShapes/districts114.shp", quiet = T)
+cd114 <- get_congress_map(114)
+
+# load 114th congress
+#cd114 <- st_read("districtShapes/districts114.shp", quiet = T)
 
 # select specific state 
 cd114_mi <- cd114 %>% 
